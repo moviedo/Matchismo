@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lastMoveLabel;
 
 @end
 
@@ -28,8 +29,8 @@
         _game = [[CardMatchingGame alloc]initWithCardCount:self.cardButtons.count
                                                  usingDeck:[[PlayingCardDeck alloc] init]];
     }
+    
     return _game;
-    [self updateUI];
 }
 
 - (void)updateUI
@@ -45,13 +46,16 @@
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
     }
+    // Update last move
+    self.lastMoveLabel.text = [NSString stringWithFormat:@"Last: %@", self.game.lastMove];
+    // Update score
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    
 }
 
-- (void)setCardButton:(NSArray *)cardButtons
+- (void)setCardButtons:(NSArray *)cardButtons
 {
     _cardButtons = cardButtons;
+    [self updateUI];
 }
 
 - (void)setFlipCount:(int)flipCount
