@@ -71,4 +71,16 @@
     [self updateUI];
 }
 
+- (IBAction)dealButton:(UIButton *)sender {
+    // Reset game
+    self.game = nil;
+    self.game = self.game;
+    
+    // Update UI
+    [self updateUI];
+    self.lastMoveLabel.text = @"Last: Move";
+    self.flipLabel.text = @"Flip: 0";
+    self.scoreLabel.text = @"Score: 0";
+}
+
 @end

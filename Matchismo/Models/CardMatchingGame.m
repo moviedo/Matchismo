@@ -33,7 +33,7 @@
         for (int i = 0; i < cardCount; i++) {
             Card *card = [deck drawRandomCard];
             if(!card) {
-                self= nil;
+                self = nil;
             }
             else {
                 self.cards[i] = card;
