@@ -34,14 +34,39 @@
 {
     int score = 0;
     
+    // 2 card game mode
     if (otherCards.count == 1) {
-        PlayingCard *otherCard = [otherCards lastObject];
-        if ([otherCard.suit isEqualToString:self.suit]) {
-            score = 1;
+        id otherCard = [otherCards lastObject];
+        
+        if ([otherCard isKindOfClass:[PlayingCard class]]) {
+            PlayingCard *otherPlayingCard = (PlayingCard *)otherCard;
+            
+            if ([otherPlayingCard.suit isEqualToString:self.suit]) {
+                score = 1;
+            }
+            else if (otherPlayingCard.rank == self.rank) {
+                score = 4;
+            }
         }
-        else if (otherCard.rank == self.rank) {
-            score = 4;
+    }
+    // 3 card game mode
+    else if (otherCards.count == 2) {
+        id firsCard = [otherCards objectAtIndex:0];
+        id secondCard = [otherCards lastObject];
+        
+        if ([firsCard isKindOfClass:[PlayingCard class]] && [secondCard isKindOfClass:[PlayingCard class]]) {
+            PlayingCard *firstPlayingCard = (PlayingCard *)firsCard;
+            PlayingCard *secondPlayingCard = (PlayingCard *)secondCard;
+            
+            if ([firstPlayingCard.suit isEqualToString:self.suit] && [secondPlayingCard.suit isEqualToString:self.suit]) {
+                score = 2;
+            }
+            else if (firstPlayingCard.rank == self.rank && secondPlayingCard.rank == self.rank) {
+                score = 8;
+            }
         }
+        
+        
     }
     
     return score;

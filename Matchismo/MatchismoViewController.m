@@ -12,12 +12,15 @@
 
 @interface MatchismoViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *flipLabel;
 @property (nonatomic) int flipCount;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+
 @property (strong, nonatomic) CardMatchingGame *game;
+
+@property (weak, nonatomic) IBOutlet UILabel *flipLabel;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastMoveLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSwitch;
 
 @end
 
@@ -25,9 +28,19 @@
 
 - (CardMatchingGame *) game
 {
+    int selected_index = self.gameModeSwitch.selectedSegmentIndex;
+    NSString *gameModeTitle = [self.gameModeSwitch titleForSegmentAtIndex:selected_index];
+    int gameMode = 0;
+    
     if (!_game) {
+        // Set game mode
+        if ([gameModeTitle isEqualToString:@"Match 3"]) {
+            gameMode = 1;
+        }
+        
         _game = [[CardMatchingGame alloc]initWithCardCount:self.cardButtons.count
-                                                 usingDeck:[[PlayingCardDeck alloc] init]];
+                                                 usingDeck:[[PlayingCardDeck alloc] init]
+                                              withGameMode:gameMode];
     }
     
     return _game;
@@ -69,6 +82,10 @@
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
     [self updateUI];
+    
+    //Disable UISegmentedControl
+    self.gameModeSwitch.enabled = NO;
+    
 }
 
 - (IBAction)dealButton:(UIButton *)sender {
@@ -81,6 +98,13 @@
     self.lastMoveLabel.text = @"Last: Move";
     self.flipLabel.text = @"Flip: 0";
     self.scoreLabel.text = @"Score: 0";
+    self.gameModeSwitch.enabled = YES;
+}
+
+- (IBAction)gameModeSwitch:(UISegmentedControl *)sender {
+    // Reset game
+    self.game = nil;
+    self.game = self.game;
 }
 
 @end
