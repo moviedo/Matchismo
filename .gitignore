@@ -1,1 +1,15 @@
 Matchismo.xcodeproj/project.xcworkspace/xcuserdata/maurooviedo.xcuserdatad/UserInterfaceState.xcuserstate
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+
+# Image files #
+###############
+*.gif
+*.png
+*.jpg
+*.jpeg
+*~
+
