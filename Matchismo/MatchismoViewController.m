@@ -73,9 +73,9 @@
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
     }
     // Update last move
-    self.lastMoveLabel.text = [NSString stringWithFormat:@"Last: %@", self.game.lastMove];
+    self.lastMove = self.game.lastMove;
     // Update score
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    self.score = self.game.score;
 }
 
 - (void)setCardButtons:(NSArray *)cardButtons
