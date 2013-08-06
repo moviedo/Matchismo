@@ -108,7 +108,7 @@
                                 matchScore = matchScore * MATCH_BONUS;
                                 self.score += matchScore;
                                 lastMove = [NSString stringWithFormat:@"Matched %@ & %@ for %dpts",
-                                            [otherCards componentsJoinedByString:@", "],
+                                            [self otherCards:otherCards joinedByString:@", "],
                                              card.contents,
                                              matchScore];
                             }
@@ -119,7 +119,7 @@
                                 
                                 self.score -= MISMATCH_PENALTY;
                                 lastMove = [NSString stringWithFormat:@"%@ & %@ don't match!",
-                                            [otherCards componentsJoinedByString:@", "],
+                                            [self otherCards:otherCards joinedByString:@", "],
                                             card.contents];
                             }
                         }
@@ -139,6 +139,21 @@
         card.faceUp = !card.isFaceUp;
     }
     
+}
+
+- (NSString *)otherCards:(NSArray *)otherCards joinedByString:(NSString *)string
+{
+    NSString * finalString = @"";
+    for (Card *aCard in otherCards)
+    {
+        if ([otherCards lastObject] == aCard) {
+            finalString = [finalString stringByAppendingString:aCard.contents];
+        }
+        else {
+            finalString = [finalString stringByAppendingFormat:@"%@%@ ", aCard.contents, string];
+        }
+    }
+    return finalString;
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index
