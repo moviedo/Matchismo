@@ -14,6 +14,8 @@
 @interface MatchismoViewController ()
 
 @property (nonatomic) int flipCount;
+@property (nonatomic) int score;
+@property (strong, nonatomic) NSString * lastMove;
 
 @property (strong, nonatomic) CardMatchingGame *game;
 
@@ -88,6 +90,18 @@
     self.flipLabel.text = [NSString stringWithFormat:@"Flip: %d", self.flipCount];
 }
 
+- (void)setLastMove:(NSString *)lastMove
+{
+    _lastMove = lastMove;
+    self.lastMoveLabel.text = [NSString stringWithFormat:@"Last: %@", self.lastMove];
+}
+
+- (void)setScore:(int)score
+{
+    _score = score;
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.score];
+}
+
 - (IBAction)flipCard:(UIButton *)sender
 {
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
@@ -107,9 +121,9 @@
     
     // Update UI
     [self updateUI];
-    self.lastMoveLabel.text = @"Last: Move";
-    self.flipLabel.text = @"Flip: 0";
-    self.scoreLabel.text = @"Score: 0";
+    self.lastMove = @"Move";
+    self.flipCount = 0;
+    self.score = 0;
     self.gameModeSwitch.enabled = YES;
 }
 
