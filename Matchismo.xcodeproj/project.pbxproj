@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7165833F17AF3229004EA265 /* MatchismoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7165833E17AF3229004EA265 /* MatchismoViewController.m */; };
+		7165834217AF32FD004EA265 /* GameResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7165834117AF32FD004EA265 /* GameResultViewController.m */; };
 		717E994A179342890005DCF8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717E9949179342890005DCF8 /* UIKit.framework */; };
 		717E994C179342890005DCF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717E994B179342890005DCF8 /* Foundation.framework */; };
 		717E994E179342890005DCF8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717E994D179342890005DCF8 /* CoreGraphics.framework */; };
@@ -17,7 +19,6 @@
 		717E995E179342890005DCF8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 717E995D179342890005DCF8 /* Default@2x.png */; };
 		717E9960179342890005DCF8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 717E995F179342890005DCF8 /* Default-568h@2x.png */; };
 		717E9963179342890005DCF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 717E9961179342890005DCF8 /* MainStoryboard.storyboard */; };
-		717E9966179342890005DCF8 /* MatchismoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717E9965179342890005DCF8 /* MatchismoViewController.m */; };
 		719D9851179628DD009170BD /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 719D9850179628DD009170BD /* CardMatchingGame.m */; };
 		719D985A17962C76009170BD /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 719D985317962C76009170BD /* Card.m */; };
 		719D985B17962C76009170BD /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 719D985517962C76009170BD /* Deck.m */; };
@@ -26,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7165833D17AF3229004EA265 /* MatchismoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchismoViewController.h; sourceTree = "<group>"; };
+		7165833E17AF3229004EA265 /* MatchismoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchismoViewController.m; sourceTree = "<group>"; };
+		7165834017AF32FD004EA265 /* GameResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultViewController.h; sourceTree = "<group>"; };
+		7165834117AF32FD004EA265 /* GameResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultViewController.m; sourceTree = "<group>"; };
 		717E9946179342890005DCF8 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		717E9949179342890005DCF8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		717E994B179342890005DCF8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,8 +45,6 @@
 		717E995D179342890005DCF8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		717E995F179342890005DCF8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		717E9962179342890005DCF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		717E9964179342890005DCF8 /* MatchismoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchismoViewController.h; sourceTree = "<group>"; };
-		717E9965179342890005DCF8 /* MatchismoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchismoViewController.m; sourceTree = "<group>"; };
 		719D984F179628DD009170BD /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
 		719D9850179628DD009170BD /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
 		719D985217962C76009170BD /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
@@ -119,9 +122,11 @@
 				717E9958179342890005DCF8 /* MatchismoAppDelegate.h */,
 				717E9959179342890005DCF8 /* MatchismoAppDelegate.m */,
 				717E9961179342890005DCF8 /* MainStoryboard.storyboard */,
-				717E9964179342890005DCF8 /* MatchismoViewController.h */,
-				717E9965179342890005DCF8 /* MatchismoViewController.m */,
 				717E9950179342890005DCF8 /* Supporting Files */,
+				7165833D17AF3229004EA265 /* MatchismoViewController.h */,
+				7165833E17AF3229004EA265 /* MatchismoViewController.m */,
+				7165834017AF32FD004EA265 /* GameResultViewController.h */,
+				7165834117AF32FD004EA265 /* GameResultViewController.m */,
 			);
 			path = Matchismo;
 			sourceTree = "<group>";
@@ -209,12 +214,13 @@
 			files = (
 				717E9956179342890005DCF8 /* main.m in Sources */,
 				717E995A179342890005DCF8 /* MatchismoAppDelegate.m in Sources */,
-				717E9966179342890005DCF8 /* MatchismoViewController.m in Sources */,
 				719D9851179628DD009170BD /* CardMatchingGame.m in Sources */,
 				719D985A17962C76009170BD /* Card.m in Sources */,
 				719D985B17962C76009170BD /* Deck.m in Sources */,
 				719D985C17962C76009170BD /* PlayingCard.m in Sources */,
 				719D985D17962C76009170BD /* PlayingCardDeck.m in Sources */,
+				7165833F17AF3229004EA265 /* MatchismoViewController.m in Sources */,
+				7165834217AF32FD004EA265 /* GameResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
