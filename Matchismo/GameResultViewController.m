@@ -22,8 +22,12 @@
 {
     NSString *displayText = @"";
     
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    
     for (GameResult *gameResult in [[GameResult allGameResults] sortedArrayUsingSelector:self.sortSelector]) {
-        displayText = [displayText stringByAppendingFormat:@"Score: %d (%@, %0g)\n", gameResult.score, gameResult.start, round(gameResult.duration)];
+        displayText = [displayText stringByAppendingFormat:@"Score: %d (%@, %0gs)\n", gameResult.score, [formatter stringFromDate:gameResult.end], round(gameResult.duration)];
     }
     self.display.text = displayText;
 }
