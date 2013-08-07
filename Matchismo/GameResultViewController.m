@@ -7,21 +7,31 @@
 //
 
 #import "GameResultViewController.h"
+#import "GameResult.h"
 
 @interface GameResultViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextView *display;
 
 @end
 
 @implementation GameResultViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)updateUI
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
+    NSString *displayText = @"";
     
-    return self;
+    for (GameResult *gameResult in [GameResult allGameResults]) {
+        displayText = [displayText stringByAppendingFormat:@"Score: %d (%@, %0g)\n", gameResult.score, gameResult.start, round(gameResult.duration)];
+    }
+    self.display.text = displayText;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self updateUI];
 }
 
 @end

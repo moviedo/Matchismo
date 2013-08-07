@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Mauro Oviedo. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <UIKit/UIKit.h>
 
-@interface GameResultViewController : NSViewController
+@interface GameResultViewController : UIViewController
 
 @end
