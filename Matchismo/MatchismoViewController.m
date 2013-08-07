@@ -57,6 +57,17 @@
         [cardButton setTitle:card.contents
                     forState:UIControlStateSelected|UIControlStateDisabled];
         
+        //set background image
+        UIImage *cardBackImage = [UIImage imageNamed:@"one_piece.png"];
+        UIImage *alphaColorImage = [UIImage imageNamed:@"alpha.png"];
+        
+        [cardButton setTitle:@"" forState:UIControlStateNormal];
+        [cardButton setImage:cardBackImage forState:UIControlStateNormal];
+        [cardButton setImage:alphaColorImage forState:UIControlStateSelected];
+        [cardButton setImage:alphaColorImage forState:UIControlStateSelected|UIControlStateDisabled];
+        UIEdgeInsets imageInset = UIEdgeInsetsMake(5,5,5,5);
+        cardButton.imageEdgeInsets = imageInset;
+        
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
