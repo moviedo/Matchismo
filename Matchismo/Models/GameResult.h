@@ -17,4 +17,8 @@
 
 + (NSArray *)allGameResults;
 
+- (NSComparisonResult)compareScoreToGameResult:(GameResult *)otherResult;
+- (NSComparisonResult)compareEndDateToGameResult:(GameResult *)otherResult;
+- (NSComparisonResult)compareDurationToGameResult:(GameResult *)otherResult;
+
 @end
