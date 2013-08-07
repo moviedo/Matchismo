@@ -9,6 +9,7 @@
 #import "MatchismoViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
+#import "GameResult.h"
 
 @interface MatchismoViewController ()
 
@@ -21,12 +22,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastMoveLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSwitch;
+@property (strong, nonatomic) GameResult *gameResult;
 
 @end
 
 @implementation MatchismoViewController
 
-- (CardMatchingGame *) game
+- (GameResult *)gameResult
+{
+    if (!_gameResult) {
+        _gameResult = [[GameResult alloc] init];
+    }
+    
+    return _gameResult;
+}
+
+- (CardMatchingGame *)game
 {
     int selected_index = self.gameModeSwitch.selectedSegmentIndex;
     NSString *gameModeTitle = [self.gameModeSwitch titleForSegmentAtIndex:selected_index];
@@ -86,12 +97,13 @@
     //Disable UISegmentedControl
     self.gameModeSwitch.enabled = NO;
     
+    //
+    self.gameResult.score = self.game.score;
 }
 
 - (IBAction)dealButton:(UIButton *)sender {
     // Reset game
     self.game = nil;
-    self.game = self.game;
     
     // Update UI
     [self updateUI];
