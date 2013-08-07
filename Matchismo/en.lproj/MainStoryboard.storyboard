@@ -8,7 +8,7 @@
         <scene sceneID="UhZ-H5-ICS">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="k8g-iZ-4of" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="wWn-N3-1XS">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -90,12 +90,15 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="lTp-OA-c65"/>
+                    <connections>
+                        <outlet property="display" destination="Aiv-ew-urk" id="hGY-jq-Djc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GUQ-Uj-bYm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1592" y="-1314"/>
         </scene>
-        <!--Matchismo View Controller - Item-->
+        <!--Matchismo View Controller - item-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="MatchismoViewController" sceneMemberID="viewController">
@@ -454,7 +457,7 @@
                             <constraint firstItem="1q4-VJ-rls" firstAttribute="baseline" secondItem="L1z-8d-xk0" secondAttribute="baseline" type="default" id="zR4-yt-OW8"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="4aY-w0-oxH"/>
+                    <tabBarItem key="tabBarItem" title="item" id="4aY-w0-oxH"/>
                     <connections>
                         <outlet property="flipLabel" destination="gHA-Ol-uxZ" id="AxE-Nz-Ask"/>
                         <outlet property="gameModeSwitch" destination="NMI-jz-Zfu" id="45B-Mk-qdq"/>
@@ -469,6 +472,12 @@
         </scene>
     </scenes>
     <classes>
+        <class className="GameResultViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameResultViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="display" candidateClass="UITextView"/>
+            </relationships>
+        </class>
         <class className="MatchismoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchismoViewController.h"/>
             <relationships>
