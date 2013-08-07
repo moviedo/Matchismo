@@ -51,11 +51,11 @@
     }
     // 3 card game mode
     else if (otherCards.count == 2) {
-        id firsCard = [otherCards objectAtIndex:0];
+        id firstCard = [otherCards objectAtIndex:0];
         id secondCard = [otherCards lastObject];
         
-        if ([firsCard isKindOfClass:[PlayingCard class]] && [secondCard isKindOfClass:[PlayingCard class]]) {
-            PlayingCard *firstPlayingCard = (PlayingCard *)firsCard;
+        if ([firstCard isKindOfClass:[PlayingCard class]] && [secondCard isKindOfClass:[PlayingCard class]]) {
+            PlayingCard *firstPlayingCard = (PlayingCard *)firstCard;
             PlayingCard *secondPlayingCard = (PlayingCard *)secondCard;
             
             if ([firstPlayingCard.suit isEqualToString:self.suit] && [secondPlayingCard.suit isEqualToString:self.suit]) {
