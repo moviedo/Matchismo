@@ -80,7 +80,7 @@
 
 - (void)setSuit:(NSString *)suit
 {
-    if ([@[@"♥",@"♦",@"♠",@"♣"] containsObject:suit]) {
+    if ([[PlayingCard validSuits] containsObject:suit]) {
         _suit = suit;
     }
 }
