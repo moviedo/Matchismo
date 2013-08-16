@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		712C193A17BE91D9009E4EDC /* SetCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 712C193917BE91D9009E4EDC /* SetCardDeck.m */; };
 		7148C6C917B54FC500D918DD /* BaseCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7148C6C817B54FC500D918DD /* BaseCardGameViewController.m */; };
 		7165833F17AF3229004EA265 /* MatchismoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7165833E17AF3229004EA265 /* MatchismoViewController.m */; };
 		717E994A179342890005DCF8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717E9949179342890005DCF8 /* UIKit.framework */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		712C193817BE91D9009E4EDC /* SetCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardDeck.h; sourceTree = "<group>"; };
+		712C193917BE91D9009E4EDC /* SetCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCardDeck.m; sourceTree = "<group>"; };
 		7148C6C717B54FC500D918DD /* BaseCardGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCardGameViewController.h; sourceTree = "<group>"; };
 		7148C6C817B54FC500D918DD /* BaseCardGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCardGameViewController.m; sourceTree = "<group>"; };
 		7165833D17AF3229004EA265 /* MatchismoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchismoViewController.h; sourceTree = "<group>"; };
@@ -86,6 +89,8 @@
 		712E7B28179347C7002C676F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				712C193817BE91D9009E4EDC /* SetCardDeck.h */,
+				712C193917BE91D9009E4EDC /* SetCardDeck.m */,
 				71C5504817B2D6AA00CBF32B /* SetCard.h */,
 				71C5504917B2D6AA00CBF32B /* SetCard.m */,
 				71FAE2E517B169B6002842D8 /* GameResult.h */,
@@ -245,6 +250,7 @@
 				71C5504A17B2D6AA00CBF32B /* SetCard.m in Sources */,
 				71C5505017B2E77300CBF32B /* CardGameSetViewController.m in Sources */,
 				7148C6C917B54FC500D918DD /* BaseCardGameViewController.m in Sources */,
+				712C193A17BE91D9009E4EDC /* SetCardDeck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
