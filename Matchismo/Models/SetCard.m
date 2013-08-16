@@ -17,7 +17,7 @@
 
 + (NSArray *)validColors
 {
-    return @[[UIColor redColor], [UIColor blueColor], [UIColor greenColor]];
+    return @[@1, @2, @3];
 }
 
 + (NSArray *)validShadings
@@ -43,21 +43,21 @@
             SetCard *secondSetCard = (SetCard *)secondCard;
             
             //They all have the same number, or they have three different numbers.
-            if (firstSetCard.number == self.number && secondSetCard.number == self.number) {
+            if (firstSetCard.numberOfSymbols == self.numberOfSymbols && secondSetCard.numberOfSymbols == self.numberOfSymbols) {
                 score = 2;
             }
-            else if (firstSetCard.number != self.number &&
-                     secondSetCard.number != self.number &&
-                     firstSetCard.number != secondSetCard.number) {
+            else if (firstSetCard.numberOfSymbols != self.numberOfSymbols &&
+                     secondSetCard.numberOfSymbols != self.numberOfSymbols &&
+                     firstSetCard.numberOfSymbols != secondSetCard.numberOfSymbols) {
                 score = 8;
             }
             //They all have the same shading, or they have three different shadings.
-            else if (firstSetCard.shading == self.shading && secondSetCard.shading == self.shading) {
+            else if ([firstSetCard.shading isEqualToNumber:self.shading] && [secondSetCard.shading isEqualToNumber:self.shading]) {
                 score = 2;
             }
-            else if (firstSetCard.shading != self.shading &&
-                     secondSetCard.shading != self.shading &&
-                     firstSetCard.shading != secondSetCard.shading) {
+            else if (![firstSetCard.shading isEqualToNumber:self.shading] &&
+                     ![secondSetCard.shading isEqualToNumber:self.shading] &&
+                     ![firstSetCard.shading isEqualToNumber:secondSetCard.shading]) {
                 score = 8;
             }
             //They all have the same symbol, or they have three different symbols.
@@ -71,11 +71,14 @@
                 score = 8;
             }
             //They all have the same color, or they have three different colors.
-            else if (YES) {
-                
+            else if ([firstSetCard.color isEqualToNumber:self.color] &&
+                     [secondSetCard.color isEqualToNumber:self.color]) {
+                score = 2;
             }
-            else if (YES) {
-                
+            else if (![firstSetCard.color isEqualToNumber:self.color] &&
+                     ![secondSetCard.color isEqualToNumber:self.color] &&
+                     ![firstSetCard.color isEqualToNumber:secondSetCard.color]) {
+                score = 8;
             }
         }
     }
@@ -86,13 +89,25 @@
 - (NSString *)contents
 {
     NSString *generatedSymbol = @"";
-    for (int i=0; i < self.number; i++) {
+    for (int i=0; i < self.numberOfSymbols; i++) {
         generatedSymbol = [generatedSymbol stringByAppendingString:self.symbol];
     }
     return generatedSymbol;
 }
 
+- (void)setNumberOfSymbol:(NSUInteger)numberOfSymbols
+{
+    if (numberOfSymbols <= [SetCard maxNumberOfSymbols]) {
+        _numberOfSymbols = numberOfSymbols;
+    }
+}
+
 @synthesize symbol = _symbol; // because we provide setter AND getter
+
+- (NSString *)symbol
+{
+    return _symbol ? _symbol : @"?";
+}
 
 - (void)setSymbol:(NSString *)symbol
 {
@@ -101,16 +116,31 @@
     }
 }
 
-- (NSString *)symbol
+@synthesize color = _color;
+
+- (NSNumber *)color
 {
-    return _symbol ? _symbol : @"?";
+    return _color ? _color : @-1;
 }
 
-- (void)setNumber:(NSUInteger)number
+- (void)setColor:(NSNumber *)color
 {
-    if (number <= [SetCard maxNumberOfSymbols]) {
-        _number = number;
+    if ([[SetCard validColors] containsObject:color]) {
+        _color = color;
     }
 }
 
+@synthesize shading = _shading;
+
+- (NSNumber *)shading
+{
+    return _shading ? _shading : @-1;
+}
+
+- (void)setShading:(NSNumber *)shading
+{
+    if ([[SetCard validShadings] containsObject:shading]) {
+        _shading = shading;
+    }
+}
 @end
