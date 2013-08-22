@@ -60,8 +60,6 @@
     if (!card.isUnplayable) {
         if (!card.isFaceUp) {
             
-            // Check game mode
-            NSLog(@"Game Mode is: %d", self.gameMode);
             // 2 card game mode
             if (self.gameMode == 0) {
                 //see if flipping  this card up creates a match
@@ -128,7 +126,15 @@
             }
         
             if (!lastMove) {
-                self.lastMove = [NSString stringWithFormat:@"Flipped up %@", card.contents];
+                NSString *chosenTerm = @"";
+                if (self.gameMode == 0) {
+                    chosenTerm = [NSString stringWithFormat:@"Flipped up %@", card.contents];
+                }
+                else {
+                    chosenTerm = [NSString stringWithFormat:@"Chose %@", card.contents];
+                }
+                self.lastMove = chosenTerm;
+                
             }
             else {
                 self.lastMove = lastMove;
