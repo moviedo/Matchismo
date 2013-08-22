@@ -12,7 +12,7 @@
 
 + (NSArray *)validSymbols
 {
-    return @[@"△",@"○",@"□"];
+    return @[@"▲",@"●",@"■"];
 }
 
 + (NSArray *)validColors
@@ -89,9 +89,7 @@
 - (NSString *)contents
 {
     NSString *generatedSymbol = @"";
-    for (int i=0; i < self.numberOfSymbols; i++) {
-        generatedSymbol = [generatedSymbol stringByAppendingString:self.symbol];
-    }
+    generatedSymbol = [generatedSymbol stringByPaddingToLength:self.numberOfSymbols withString:self.symbol startingAtIndex:0];
     return generatedSymbol;
 }
 
