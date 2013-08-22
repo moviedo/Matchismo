@@ -18,22 +18,21 @@
     if (self) {
         
         for (NSString *symbol in [SetCard validSymbols]) {
-            SetCard *card = [[SetCard alloc] init];
-            
             for (NSNumber *shadingValue in [SetCard validShadings]) {
-                card.shading = shadingValue;
-                
                 for (NSNumber *color in [SetCard validColors]) {
-                    card.color = color;
-                    
                     for (NSUInteger numberOfSymbol = 1; numberOfSymbol <= [SetCard maxNumberOfSymbols]; numberOfSymbol++) {
+                        SetCard *card = [[SetCard alloc] init];
+                        
+                        card.symbol = symbol;
+                        card.shading = shadingValue;
+                        card.color = color;
                         card.numberOfSymbols = numberOfSymbol;
+                        
+                        [self addCard:card atTop:YES];
                         
                     }
                 }
             }
-            
-            [self addCard:card atTop:YES];
         }
     }
     
