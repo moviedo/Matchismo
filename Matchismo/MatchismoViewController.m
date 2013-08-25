@@ -23,7 +23,7 @@
 {
     if (!_game) {
         // Set game mode
-        int gameMode = 1;
+        int gameMode = 0;
         _game = [[CardMatchingGame alloc]initWithCardCount:self.cardButtons.count
                                                  usingDeck:[[PlayingCardDeck alloc] init]
                                               withGameMode:gameMode];
