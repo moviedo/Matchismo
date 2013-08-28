@@ -15,14 +15,22 @@
     return @[@"▲",@"●",@"■"];
 }
 
+#define RED_COLOR @1
+#define BLUE_COLOR @2
+#define GREEN_COLOR @3
+
 + (NSArray *)validColors
 {
-    return @[@1, @2, @3];
+    return @[RED_COLOR, BLUE_COLOR, GREEN_COLOR];
 }
+
+#define NO_SHADING @0.0
+#define PARTIAL_SHADING @0.2
+#define SOLID_SHADING @1.0
 
 + (NSArray *)validShadings
 {
-    return @[@0.0, @0.5, @1.0];
+    return @[NO_SHADING, PARTIAL_SHADING, SOLID_SHADING];
 }
 
 + (NSUInteger)maxNumberOfSymbols
@@ -43,43 +51,41 @@
             SetCard *secondSetCard = (SetCard *)secondCard;
             
             //They all have the same number, or they have three different numbers.
-            if (firstSetCard.numberOfSymbols == self.numberOfSymbols && secondSetCard.numberOfSymbols == self.numberOfSymbols) {
-                score = 2;
-            }
-            else if (firstSetCard.numberOfSymbols != self.numberOfSymbols &&
-                     secondSetCard.numberOfSymbols != self.numberOfSymbols &&
-                     firstSetCard.numberOfSymbols != secondSetCard.numberOfSymbols) {
-                score = 8;
-            }
-            //They all have the same shading, or they have three different shadings.
-            else if ([firstSetCard.shading isEqualToNumber:self.shading] && [secondSetCard.shading isEqualToNumber:self.shading]) {
-                score = 2;
-            }
-            else if (![firstSetCard.shading isEqualToNumber:self.shading] &&
-                     ![secondSetCard.shading isEqualToNumber:self.shading] &&
-                     ![firstSetCard.shading isEqualToNumber:secondSetCard.shading]) {
-                score = 8;
-            }
-            //They all have the same symbol, or they have three different symbols.
-            else if ([firstSetCard.symbol isEqualToString:self.symbol] &&
-                     [secondSetCard.symbol isEqualToString:self.symbol]) {
-                score = 2;
-            }
-            else if (![firstSetCard.symbol isEqualToString:self.symbol] &&
-                     ![secondSetCard.symbol isEqualToString:self.symbol] &&
-                     ![firstSetCard.symbol isEqualToString:secondSetCard.symbol]) {
-                score = 8;
-            }
-            //They all have the same color, or they have three different colors.
-            else if ([firstSetCard.color isEqualToNumber:self.color] &&
-                     [secondSetCard.color isEqualToNumber:self.color]) {
-                score = 2;
-            }
-            else if (![firstSetCard.color isEqualToNumber:self.color] &&
-                     ![secondSetCard.color isEqualToNumber:self.color] &&
-                     ![firstSetCard.color isEqualToNumber:secondSetCard.color]) {
-                score = 8;
-            }
+            if ((firstSetCard.numberOfSymbols == self.numberOfSymbols &&
+                secondSetCard.numberOfSymbols == self.numberOfSymbols)
+                ||
+                (firstSetCard.numberOfSymbols != self.numberOfSymbols &&
+                secondSetCard.numberOfSymbols != self.numberOfSymbols &&
+                firstSetCard.numberOfSymbols != secondSetCard.numberOfSymbols)) {
+                    
+                    //They all have the same shading, or they have three different shadings.
+                    if (([firstSetCard.shading isEqualToNumber:self.shading] &&
+                        [secondSetCard.shading isEqualToNumber:self.shading])
+                        ||
+                        (![firstSetCard.shading isEqualToNumber:self.shading] &&
+                         ![secondSetCard.shading isEqualToNumber:self.shading] &&
+                         ![firstSetCard.shading isEqualToNumber:secondSetCard.shading])) {
+                            
+                            //They all have the same symbol, or they have three different symbols.
+                            if (([firstSetCard.symbol isEqualToString:self.symbol] &&
+                                [secondSetCard.symbol isEqualToString:self.symbol])
+                                ||
+                                (![firstSetCard.symbol isEqualToString:self.symbol] &&
+                                 ![secondSetCard.symbol isEqualToString:self.symbol] &&
+                                 ![firstSetCard.symbol isEqualToString:secondSetCard.symbol])) {
+                                    
+                                     //They all have the same color, or they have three different colors.
+                                    if (([firstSetCard.color isEqualToNumber:self.color] &&
+                                        [secondSetCard.color isEqualToNumber:self.color])
+                                        ||
+                                        (![firstSetCard.color isEqualToNumber:self.color] &&
+                                         ![secondSetCard.color isEqualToNumber:self.color] &&
+                                         ![firstSetCard.color isEqualToNumber:secondSetCard.color])) {
+                                            score = 2;
+                                        }
+                                }
+                        }
+                }
         }
     }
     
