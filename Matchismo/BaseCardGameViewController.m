@@ -33,10 +33,10 @@
     self.flipLabel.text = [NSString stringWithFormat:@"Flip: %d", self.flipCount];
 }
 
-- (void)setLastMove:(NSString *)lastMove
+- (void)setLastMove:(NSAttributedString *)lastMove
 {
     _lastMove = lastMove;
-    self.lastMoveLabel.text = [NSString stringWithFormat:@"Last: %@", self.lastMove];
+    self.lastMoveLabel.attributedText = lastMove;
 }
 
 - (void)setScore:(int)score
@@ -48,7 +48,7 @@
 - (void)resetInformationalLabels
 {
     [self setFlipCount:0];
-    [self setLastMove:@"Move"];
+    [self setLastMove:[[NSAttributedString alloc] initWithString:@"Last Move"]];
     [self setScore:0];
 }
 
