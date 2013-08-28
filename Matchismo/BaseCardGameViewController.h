@@ -13,7 +13,7 @@
 
 @property (nonatomic) int flipCount;
 @property (nonatomic) int score;
-@property (strong, nonatomic) NSString *lastMove;
+@property (strong, nonatomic) NSAttributedString *lastMove;
 @property (strong, nonatomic) GameResult *gameResult;
 
 - (void)resetInformationalLabels;
