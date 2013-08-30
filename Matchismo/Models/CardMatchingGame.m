@@ -52,6 +52,9 @@
 #define MISMATCH_PENALTY 2
 #define MATCH_BONUS 4
 
+#define MATCH_CARD_GAME_MODE 0
+#define SET_CARD_GAME_MODE 1
+
 - (void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card =[self cardAtIndex:index];
@@ -61,7 +64,7 @@
         if (!card.isFaceUp) {
             
             // 2 card game mode
-            if (self.gameMode == 0) {
+            if (self.gameMode == MATCH_CARD_GAME_MODE) {
                 //see if flipping  this card up creates a match
                 for (Card* otherCard in self.cards) {
                     
@@ -87,7 +90,7 @@
                 }
             }
             // 3 card game mode
-            else if (self.gameMode == 1) {
+            else if (self.gameMode == SET_CARD_GAME_MODE) {
                 NSMutableArray *otherCards = [[NSMutableArray alloc] init];
                 
                 for (Card* otherCard in self.cards) {
@@ -127,10 +130,10 @@
         
             if (!lastMove) {
                 NSString *chosenTerm = @"";
-                if (self.gameMode == 0) {
+                if (self.gameMode == MATCH_CARD_GAME_MODE) {
                     chosenTerm = [NSString stringWithFormat:@"Flipped up %@", card.contents];
                 }
-                else {
+                else if (self.gameMode == SET_CARD_GAME_MODE) {
                     chosenTerm = [NSString stringWithFormat:@"Chose %@", card.contents];
                 }
                 self.lastMove = chosenTerm;
