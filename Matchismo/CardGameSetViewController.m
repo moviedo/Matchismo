@@ -7,7 +7,8 @@
 //
 
 #import "CardGameSetViewController.h"
-//#import "SetCardDeck.h"
+#import "SetCard.h"
+#import "SetCardDeck.h"
 #import "CardMatchingGame.h"
 
 @interface CardGameSetViewController ()
@@ -19,34 +20,64 @@
 
 @implementation CardGameSetViewController
 
-//- (CardMatchingGame *)game
-//{
-//    if (!_game) {
-//        // Set game mode
-//        int gameMode = 1;
-//        _game = [[CardMatchingGame alloc]initWithCardCount:self.cardButtons.count
-//                                                 usingDeck:[[SetCardDeck alloc] init]
-//                                              withGameMode:gameMode];
-//    }
-//    
-//    return _game;
-//}
+- (CardMatchingGame *)game
+{
+    if (!_game) {
+        // Set game mode
+        int gameMode = 1;
+        _game = [[CardMatchingGame alloc]initWithCardCount:self.cardButtons.count
+                                                 usingDeck:[[SetCardDeck alloc] init]
+                                              withGameMode:gameMode];
+    }
+    
+    return _game;
+}
 
 - (void)updateUI
 {
+    NSArray *playedCards = @[];
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        [cardButton setTitle:card.contents
-                    forState:UIControlStateSelected];
-        [cardButton setTitle:card.contents
-                    forState:UIControlStateSelected|UIControlStateDisabled];
+        NSAttributedString *setGameAttributedString = nil;
+        
+        if ([card isKindOfClass:[SetCard class]]) {
+            UIColor *color = [CardGameSetViewController translateColorFromModel:(SetCard *)card];
+            
+            setGameAttributedString =
+            [[NSAttributedString alloc] initWithString:card.contents
+                                            attributes:@{
+                                  NSFontAttributeName : [UIFont systemFontOfSize:20],
+                       NSForegroundColorAttributeName : color,
+                           NSStrokeWidthAttributeName : @-5,
+                           NSStrokeColorAttributeName : [color colorWithAlphaComponent:1.0]
+             }];
+        }
+        
+        [cardButton setAttributedTitle: setGameAttributedString
+                              forState:UIControlStateNormal];
         
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
+        cardButton.alpha = card.isUnplayable ? 0.0 : 1.0;
+        
+        if (cardButton.selected) {
+            [cardButton setBackgroundColor:[UIColor lightGrayColor]];
+            playedCards = [playedCards arrayByAddingObject:card];
+        }
+        else {
+            [cardButton setBackgroundColor:nil];
+        }
     }
+    
     // Update last move
-    self.lastMove = self.game.lastMove;
+    if (!self.game.lastMove) {
+        self.lastMove = [[NSAttributedString alloc] initWithString:@"Last Move"];
+    }
+    else {
+       
+        self.lastMove = [CardGameSetViewController formatNSAttributedStringForLastMove:self.game.lastMove
+                                                                             withCards:playedCards];
+    }
     // Update score
     self.score = self.game.score;
 }
@@ -55,6 +86,25 @@
 {
     _cardButtons = cardButtons;
     [self updateUI];
+}
+
++ (UIColor *)translateColorFromModel:(SetCard *)card
+{
+    UIColor *cardColor = nil;
+    
+    if ([card.color isEqualToNumber:@1]) {
+        cardColor = [UIColor redColor];
+    }
+    else if ([card.color isEqualToNumber:@2]) {
+        cardColor = [UIColor greenColor];
+    }
+    else {
+        cardColor = [UIColor blueColor];
+    }
+    
+    cardColor = [cardColor colorWithAlphaComponent:[card.shading floatValue]];
+    
+    return cardColor;
 }
 
 - (IBAction)flipCard:(UIButton *)sender
@@ -75,4 +125,39 @@
     [self updateUI];
     [self resetInformationalLabels];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self updateUI];
+}
+
++ (NSAttributedString *)formatNSAttributedStringForLastMove:(NSString *)string
+                                            withCards:(NSArray *)playedCards
+{
+    NSMutableAttributedString *lastMove = [[[NSAttributedString alloc] initWithString:string] mutableCopy];
+    
+    for (SetCard *card in playedCards) {
+        NSRange sybmolRange = [string rangeOfString:card.contents];
+        
+        [lastMove setAttributes:[CardGameSetViewController createAttributeDictionary:card]
+                          range:sybmolRange];
+    }
+    
+    return lastMove;
+}
+
++ (NSDictionary *)createAttributeDictionary:(SetCard *)card
+{
+    UIColor *color = [CardGameSetViewController translateColorFromModel:(SetCard *)card];
+    
+    NSDictionary *symbolAttributes = @{
+                                       NSForegroundColorAttributeName : color,
+                                       NSStrokeWidthAttributeName : @-5,
+                                       NSStrokeColorAttributeName : [color colorWithAlphaComponent:1.0]
+                                       };
+    
+    return symbolAttributes;
+}
+
 @end
