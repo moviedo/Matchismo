@@ -45,8 +45,14 @@
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
     }
+    
     // Update last move
-    self.lastMove = self.game.lastMove;
+    if (!self.game.lastMove) {
+        self.lastMove = [[NSAttributedString alloc] initWithString:@"Last Move"];
+    }
+    else {
+        self.lastMove = [[NSAttributedString alloc] initWithString:self.game.lastMove];
+    }
     // Update score
     self.score = self.game.score;
 }
