@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Deck.h"
 
+
 @interface CardMatchingGame : NSObject
 
 // designated initializer
@@ -17,10 +18,18 @@
            withGameMode:(NSUInteger)gameMode;
 
 - (void)flipCardAtIndex:(NSUInteger)index;
-
 - (Card *)cardAtIndex:(NSUInteger)index;
 
+// Output will be either CARD_FLIP, CARD_MATHCED or CARD_MISMATCH
+@property (nonatomic, readonly) int lastMove;
 @property (nonatomic, readonly) int score;
-@property (nonatomic, readonly) NSString *lastMove;
+@property (strong, nonatomic, readonly) NSArray *positionsOfLastCardsPlayed;
 
 @end
+
+// enum declaration 
+enum {
+    CARD_SET_FLIP       = 1,
+    CARD_SET_MATHCED    = 2,
+    CARD_SET_MISMATCH   = 4
+};
