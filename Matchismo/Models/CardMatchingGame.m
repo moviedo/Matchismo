@@ -11,9 +11,11 @@
 @interface CardMatchingGame()
 
 @property (strong, nonatomic) NSMutableArray *cards;
-@property (nonatomic, readwrite) int score;
-@property (nonatomic, readwrite) NSString *lastMove;
+@property (strong, nonatomic) NSArray *positionsOfCardsPlayed;
+
 @property (nonatomic) int gameMode;
+@property (nonatomic, readwrite) int lastMove;
+@property (nonatomic, readwrite) int score;
 
 @end
 
@@ -58,7 +60,9 @@
 - (void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card =[self cardAtIndex:index];
-    NSString *lastMove = nil;
+    NSNumber *cardFlipped = [[NSNumber alloc] initWithInt:index];
+    self.positionsOfCardsPlayed = [NSArray arrayWithObject:cardFlipped];
+    self.lastMove = FLIP_COST;
     
     if (!card.isUnplayable) {
         if (!card.isFaceUp) {
@@ -76,16 +80,19 @@
                             card.unplayable = YES;
                             
                             matchScore = matchScore * MATCH_BONUS;
+                            self.lastMove = MATCH_BONUS;
                             self.score += matchScore;
-                            lastMove = [NSString stringWithFormat:@"Matched %@ & %@ for %dpts", card.contents, otherCard.contents, matchScore];
                         }
                         else {
                             otherCard.faceUp = NO;
                             
+                            self.lastMove = MISMATCH_PENALTY;
                             self.score -= MISMATCH_PENALTY;
-                            lastMove = [NSString stringWithFormat:@"%@ & %@ don't match!", card.contents, otherCard.contents];
                         }
                         
+                        //Add card positions to the property
+                        NSNumber *otherCardPlayed = [[NSNumber alloc] initWithInt:[self.cards indexOfObject:otherCard]];
+                        self.positionsOfCardsPlayed = [[NSArray alloc] initWithObjects:cardFlipped, otherCardPlayed, nil];
                     }
                 }
             }
@@ -107,62 +114,43 @@
                                 card.unplayable = YES;
                                 
                                 matchScore = matchScore * MATCH_BONUS;
+                                self.lastMove = MATCH_BONUS;
                                 self.score += matchScore;
-                                lastMove = [NSString stringWithFormat:@"Matched %@ & %@ for %dpts",
-                                            [self otherCards:otherCards joinedByString:@", "],
-                                             card.contents,
-                                             matchScore];
                             }
                             else {
                                 for (Card *matchedCard in otherCards) {
                                     matchedCard.faceUp = NO;
                                 }
                                 
+                                self.lastMove = MISMATCH_PENALTY;
                                 self.score -= MISMATCH_PENALTY;
-                                lastMove = [NSString stringWithFormat:@"%@ & %@ don't match!",
-                                            [self otherCards:otherCards joinedByString:@", "],
-                                            card.contents];
+
                             }
+                            
+                            //Add card positions to the property
+                            NSNumber *otherCardPlayed_1 = [[NSNumber alloc] initWithInt:[self.cards indexOfObject:otherCards[0]]];
+                            NSNumber *otherCardPlayed_2 = [[NSNumber alloc] initWithInt:[self.cards indexOfObject:otherCards[1]]];
+                            self.positionsOfCardsPlayed = [[NSArray alloc] initWithObjects:cardFlipped, otherCardPlayed_1, otherCardPlayed_2, nil];
                         }
                     }
                 }
             }
-        
-            if (!lastMove) {
-                NSString *chosenTerm = @"";
-                if (self.gameMode == MATCH_CARD_GAME_MODE) {
-                    chosenTerm = [NSString stringWithFormat:@"Flipped up %@", card.contents];
-                }
-                else if (self.gameMode == SET_CARD_GAME_MODE) {
-                    chosenTerm = [NSString stringWithFormat:@"Chose %@", card.contents];
-                }
-                self.lastMove = chosenTerm;
-                
-            }
-            else {
-                self.lastMove = lastMove;
-            }
             
             self.score -= FLIP_COST;
+            
         }
         card.faceUp = !card.isFaceUp;
     }
     
 }
 
-- (NSString *)otherCards:(NSArray *)otherCards joinedByString:(NSString *)string
+-(NSArray *)positionsOfLastCardsPlayed;
 {
-    NSString * finalString = @"";
-    for (Card *aCard in otherCards)
-    {
-        if ([otherCards lastObject] == aCard) {
-            finalString = [finalString stringByAppendingString:aCard.contents];
-        }
-        else {
-            finalString = [finalString stringByAppendingFormat:@"%@%@ ", aCard.contents, string];
-        }
+    if (!_positionsOfCardsPlayed) {
+        _positionsOfCardsPlayed = [[NSArray alloc] init];
     }
-    return finalString;
+    
+    return _positionsOfCardsPlayed;
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index
