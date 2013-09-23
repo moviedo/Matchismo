@@ -6,8 +6,22 @@
 //  Copyright (c) 2013 Mauro Oviedo. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
+#import "AbstractCardMatchingGame.h"
 
-@interface SetMatchingGame : AbstractCardMthingGame
+@interface SetMatchingGame : AbstractCardMatchingGame
+
+- (void)flipCardAtIndex:(NSUInteger)index; //implementing abstract
+
+@property (nonatomic, readonly) int lastMove;//implementing abstract
+@property (nonatomic, readonly) int score; //implementing abstract
+@property (strong, nonatomic) NSArray *positionsOfLastCardsPlayed; //implementing abstract
 
 @end
+
+// enum declaration
+enum {
+    SET_CARD_FLIP       = FLIP_COST,
+    SET_CARD_MATHCED    = MATCH_BONUS,
+    SET_CARD_MISMATCH   = MISMATCH_PENALTY
+};
