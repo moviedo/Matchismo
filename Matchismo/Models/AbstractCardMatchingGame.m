@@ -51,6 +51,14 @@
     //abstract
 }
 
+-(NSArray *)positionsOfLastCardsPlayed;
+{
+    if (!_positionsOfCardsPlayed) {
+        _positionsOfCardsPlayed = [[NSArray alloc] init];
+    }
+    
+    return _positionsOfCardsPlayed;
+}
 
 - (Card *)cardAtIndex:(NSUInteger)index
 {
