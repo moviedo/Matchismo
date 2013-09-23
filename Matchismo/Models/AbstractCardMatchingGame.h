@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Mauro Oviedo. All rights reserved.
 //
 
+#import "Deck.h"
+
 @interface AbstractCardMatchingGame : NSObject
 
 // designated initializer
@@ -22,13 +24,8 @@
 
 @end
 
-// enum declaration
 enum {
-    FLIP_COST           = 1,
-    MISMATCH_PENALTY    = 2,
-    MATCH_BONUS         = 4,
-    CARD_SET_FLIP       = FLIP_COST,
-    CARD_SET_MATHCED    = MATCH_BONUS,
-    CARD_SET_MISMATCH   = MISMATCH_PENALTY
+    FLIP_COST               = 1,
+    MISMATCH_PENALTY        = 2,
+    MATCH_BONUS             = 4
 };
-
