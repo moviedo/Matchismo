@@ -19,9 +19,12 @@
 - (void)flipCardAtIndex:(NSUInteger)index; //abstract
 
 // Output will be either CARD_FLIP, CARD_MATHCED or CARD_MISMATCH
-@property (nonatomic, readonly) int lastMove;//abstract
-@property (nonatomic, readonly) int score; //abstract
-@property (strong, nonatomic) NSArray *positionsOfLastCardsPlayed; //abstract
+@property (nonatomic, readonly) int lastMove;
+@property (nonatomic, readonly) int score;
+
+@property (strong, nonatomic, readonly) NSMutableArray *cards;
+@property (strong, nonatomic) NSArray *positionsOfLastCardsPlayed;
+
 
 @end
 
