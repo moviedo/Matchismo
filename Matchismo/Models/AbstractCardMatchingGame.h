@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Mauro Oviedo. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "Deck.h"
 
 @interface AbstractCardMatchingGame : NSObject
