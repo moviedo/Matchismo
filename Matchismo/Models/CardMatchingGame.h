@@ -14,9 +14,6 @@
 
 - (void)flipCardAtIndex:(NSUInteger)index; //implementing abstract
 
-@property (nonatomic, readonly) int lastMove;//abstract
-@property (nonatomic, readonly) int score; //implementing abstract
-
 @end
 
 // enum declaration
