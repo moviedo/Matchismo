@@ -13,10 +13,6 @@
 
 - (void)flipCardAtIndex:(NSUInteger)index; //implementing abstract
 
-@property (nonatomic, readonly) int lastMove;//implementing abstract
-@property (nonatomic, readonly) int score; //implementing abstract
-@property (strong, nonatomic) NSArray *positionsOfLastCardsPlayed; //implementing abstract
-
 @end
 
 // enum declaration
