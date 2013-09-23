@@ -21,7 +21,7 @@
 
 @property (nonatomic, readonly) int score;
 @property (nonatomic, readonly) int lastMove;// Output will be either CARD_FLIP, CARD_MATHCED or CARD_MISMATCH
-@property (strong, nonatomic, readonly) NSArray *positionsOfLastCardsPlayed;
+@property (strong, nonatomic) NSArray *positionsOfLastCardsPlayed;
 
 @end
 
