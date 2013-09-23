@@ -6,25 +6,18 @@
 //  Copyright (c) 2013 Mauro Oviedo. All rights reserved.
 //
 
-#import "CardMatchingGame.h"
+#import "AbstractCardMatchingGame.h"
 
-@interface CardMatchingGame()
+@interface AbstractCardMatchingGame()
 
-@property (strong, nonatomic) NSMutableArray *cards;
-@property (strong, nonatomic) NSArray *positionsOfCardsPlayed;
+@property (strong, nonatomic, readwrite) NSMutableArray *cards;
 
 @property (nonatomic, readwrite) int lastMove;
 @property (nonatomic, readwrite) int score;
 
 @end
 
-@implementation CardMatchingGame
-
-- (NSMutableArray *)cards
-{
-    if(!_cards) _cards = [[NSMutableArray alloc] init];
-    return _cards;
-}
+@implementation AbstractCardMatchingGame
 
 - (id)initWithCardCount:(NSUInteger)cardCount
               usingDeck:(Deck *)deck
@@ -53,11 +46,11 @@
 
 -(NSArray *)positionsOfLastCardsPlayed;
 {
-    if (!_positionsOfCardsPlayed) {
-        _positionsOfCardsPlayed = [[NSArray alloc] init];
+    if (!_positionsOfLastCardsPlayed) {
+        _positionsOfLastCardsPlayed = [[NSArray alloc] init];
     }
     
-    return _positionsOfCardsPlayed;
+    return _positionsOfLastCardsPlayed;
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index
