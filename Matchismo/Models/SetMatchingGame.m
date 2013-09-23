@@ -61,7 +61,7 @@
                         //Add card positions to the property
                         NSNumber *otherCardPlayed_1 = [[NSNumber alloc] initWithInt:[self.cards indexOfObject:otherCards[0]]];
                         NSNumber *otherCardPlayed_2 = [[NSNumber alloc] initWithInt:[self.cards indexOfObject:otherCards[1]]];
-                        self.positionsOfLastCardsPlayed = [[NSArray alloc] initWithObjects:cardFlipped, otherCardPlayed_1, otherCardPlayed_2, nil];
+                        self.positionsOfLastCardsPlayed = @[otherCardPlayed_1, otherCardPlayed_2];
                     }
                 }
             }
