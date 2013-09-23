@@ -14,15 +14,13 @@
 
 // designated initializer
 - (id)initWithCardCount:(NSUInteger)cardCount
-              usingDeck:(Deck *)deck
-           withGameMode:(NSUInteger)gameMode;
+              usingDeck:(Deck *)deck;
 
-- (void)flipCardAtIndex:(NSUInteger)index;
+- (void)flipCardAtIndex:(NSUInteger)index; //abstract
 - (Card *)cardAtIndex:(NSUInteger)index;
 
-// Output will be either CARD_FLIP, CARD_MATHCED or CARD_MISMATCH
-@property (nonatomic, readonly) int lastMove;
 @property (nonatomic, readonly) int score;
+@property (nonatomic, readonly) int lastMove;// Output will be either CARD_FLIP, CARD_MATHCED or CARD_MISMATCH
 @property (strong, nonatomic, readonly) NSArray *positionsOfLastCardsPlayed;
 
 @end
