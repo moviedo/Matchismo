@@ -10,8 +10,6 @@
 
 @interface SetMatchingGame ()
 
-@property (strong, nonatomic, readwrite) NSMutableArray *cards;
-
 @property (nonatomic, readwrite) int lastMove;
 @property (nonatomic, readwrite) int score;
 
@@ -61,7 +59,7 @@
                         //Add card positions to the property
                         NSNumber *otherCardPlayed_1 = [[NSNumber alloc] initWithInt:[self.cards indexOfObject:otherCards[0]]];
                         NSNumber *otherCardPlayed_2 = [[NSNumber alloc] initWithInt:[self.cards indexOfObject:otherCards[1]]];
-                        self.positionsOfLastCardsPlayed = @[otherCardPlayed_1, otherCardPlayed_2];
+                        self.positionsOfLastCardsPlayed = [self.positionsOfLastCardsPlayed arrayByAddingObjectsFromArray:@[otherCardPlayed_1, otherCardPlayed_2]];
                     }
                 }
             }
