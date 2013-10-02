@@ -19,6 +19,14 @@
 
 @implementation AbstractCardMatchingGame
 
+- (NSMutableArray *)cards
+{
+    if (!_cards) {
+        _cards = [[NSMutableArray alloc] init];
+    }
+    return _cards;
+}
+
 - (id)initWithCardCount:(NSUInteger)cardCount
               usingDeck:(Deck *)deck
 {
