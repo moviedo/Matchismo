@@ -443,14 +443,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="jbg-Mc-hTy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="aqy-IO-MWv" firstAttribute="baseline" secondItem="Uh6-CH-anO" secondAttribute="baseline" type="default" id="0cn-Tr-VTc"/>
                             <constraint firstItem="vTD-Tj-kcK" firstAttribute="leading" secondItem="CaJ-n1-2Pc" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1QT-Nd-O3T"/>
                             <constraint firstItem="KAy-0i-5O4" firstAttribute="centerX" secondItem="jNG-te-DSc" secondAttribute="centerX" type="default" id="1Qo-QC-dX6"/>
                             <constraint firstItem="fHz-ES-Dmw" firstAttribute="leading" secondItem="Fkh-ji-tNJ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1VW-jm-pab"/>
@@ -522,7 +521,6 @@
                             <constraint firstItem="4nR-2g-kim" firstAttribute="top" secondItem="M6s-Gg-ICx" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qNh-Rk-QDT"/>
                             <constraint firstItem="jNG-te-DSc" firstAttribute="centerX" secondItem="3RH-m7-KV1" secondAttribute="centerX" type="default" id="s0V-tg-Emt"/>
                             <constraint firstItem="CaJ-n1-2Pc" firstAttribute="top" secondItem="39u-ZB-I9M" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="thB-J7-rab"/>
-                            <constraint firstItem="KAy-0i-5O4" firstAttribute="top" secondItem="lN8-o7-lbP" secondAttribute="top" type="default" id="uQQ-qo-V4k"/>
                             <constraint firstItem="39u-ZB-I9M" firstAttribute="top" secondItem="RzV-nj-02h" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="wU8-Br-LYS"/>
                             <constraint firstItem="lN8-o7-lbP" firstAttribute="top" secondItem="cXb-u6-C3c" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="wcC-2V-GVF"/>
                             <constraint firstItem="KAy-0i-5O4" firstAttribute="leading" secondItem="jNG-te-DSc" secondAttribute="leading" type="default" id="xFL-9K-Tfo"/>
@@ -762,7 +760,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="hiu-ie-oiB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -947,7 +945,6 @@
         <class className="CardGameSetViewController" superclassName="BaseCardGameViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameSetViewController.h"/>
             <relationships>
-                <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
                 <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>
             </relationships>
         </class>
