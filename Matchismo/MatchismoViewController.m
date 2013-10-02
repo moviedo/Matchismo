@@ -22,11 +22,8 @@
 - (CardMatchingGame *)game
 {
     if (!_game) {
-        // Set game mode
-        int gameMode = 0;
         _game = [[CardMatchingGame alloc]initWithCardCount:self.cardButtons.count
-                                                 usingDeck:[[PlayingCardDeck alloc] init]
-                                              withGameMode:gameMode];
+                                                 usingDeck:[[PlayingCardDeck alloc] init]];
     }
 
     return _game;
@@ -47,14 +44,60 @@
     }
     
     // Update last move
-    if (!self.game.lastMove) {
-        self.lastMove = [[NSAttributedString alloc] initWithString:@"Last Move"];
-    }
-    else {
-        self.lastMove = [[NSAttributedString alloc] initWithString:self.game.lastMove];
-    }
+    [self updateLastMove];
+    
     // Update score
     self.score = self.game.score;
+}
+
+- (void)updateLastMove
+{
+    NSArray *positionsOfLastCardsPlayed = self.game.positionsOfLastCardsPlayed;
+    NSAttributedString *period = [[NSAttributedString alloc] initWithString:@"."];
+    
+    if (self.game.lastMove == PLAYING_CARD_FLIP) {
+        UIButton *playingCardButton = [self.cardButtons objectAtIndex:[[positionsOfLastCardsPlayed lastObject] integerValue]];
+        
+        if (playingCardButton.isSelected) {
+            
+            NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:[playingCardButton titleForState:UIControlStateSelected]];
+            [temp appendAttributedString:period];
+
+            [temp insertAttributedString:[[NSAttributedString alloc] initWithString:@"Selected "]
+                                 atIndex:0];
+            
+            self.lastMove = [temp copy];
+        }
+    }
+    else if (self.game.lastMove == PLAYING_CARD_MATHCED || self.game.lastMove == PLAYING_CARD_MISMATCH) {
+        UIButton *firstCard = [self.cardButtons objectAtIndex:[positionsOfLastCardsPlayed[0] integerValue]];
+        UIButton *secondCard = [self.cardButtons objectAtIndex:[positionsOfLastCardsPlayed[1] integerValue]];
+        
+        NSAttributedString *ampersand = [[NSAttributedString alloc] initWithString:@" & "];
+        
+        //Add first attributed string, button title
+        NSMutableAttributedString *temp = [[NSMutableAttributedString alloc] initWithString:[firstCard titleForState:UIControlStateSelected]];
+        
+        //Add second attributed string, button title, spacing and period
+        [temp appendAttributedString:ampersand];
+        [temp appendAttributedString:[[NSAttributedString alloc] initWithString:[secondCard titleForState:UIControlStateSelected]]];
+        [temp appendAttributedString:period];
+        
+        if (self.game.lastMove == PLAYING_CARD_MATHCED) {
+            
+            [temp insertAttributedString:[[NSAttributedString alloc] initWithString:@"Matched "]
+                                 atIndex:0];
+            
+        }
+        else {
+            
+            [temp insertAttributedString:[[NSAttributedString alloc] initWithString:@"Mismatched "]
+                                 atIndex:0];
+            
+        }
+        self.lastMove = [temp copy];
+        
+    }
 }
 
 - (void)setCardButtons:(NSArray *)cardButtons
